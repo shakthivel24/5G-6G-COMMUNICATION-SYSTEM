@@ -1,1 +1,23 @@
+clc; clear; close all;
 
+frameDur = 4.615;
+numSlots = 8;
+slotTime = frameDur/numSlots;
+
+time = 0:slotTime:frameDur;
+
+figure;
+
+subplot(2,1,1)
+stem(time,ones(size(time)),'filled')
+title('TDMA Slot Structure')
+xlabel('Time (ms)')
+ylabel('Slot')
+grid on
+
+subplot(2,1,2)
+plot(time,ones(size(time)),'-s','LineWidth',1.5)
+title('TDMA Slot Allocation')
+xlabel('Time (ms)')
+ylabel('Availability')
+grid on
