@@ -1,1 +1,34 @@
+clc; clear; close all;
 
+% Total available Resource Blocks
+RBtotal = 50;
+
+% Active users
+userID = 1:5;
+
+% RB assignment
+rbAlloc = [12 10 9 8 11];
+
+% Resource utilization (%)
+usage = (rbAlloc/RBtotal)*100;
+
+disp('Resource Block Utilization (%)')
+disp(usage')
+
+figure
+
+% -------- Graph 1 --------
+subplot(2,1,1)
+plot(userID,rbAlloc,'-^','LineWidth',2)
+title('Resource Block Allocation')
+xlabel('User Number')
+ylabel('Allocated RBs')
+grid on
+
+% -------- Graph 2 --------
+subplot(2,1,2)
+plot(userID,usage,'-d','LineWidth',2)
+title('Resource Block Usage (%)')
+xlabel('User Number')
+ylabel('Usage (%)')
+grid on
