@@ -1,1 +1,35 @@
+clc; clear; close all;
 
+% System parameters
+RBbw = 180e3;                 % RB bandwidth (180 kHz)
+userID = 1:5;
+
+% Resource Blocks assigned
+rbAlloc = [12 10 9 8 11];
+
+% Modulation order (bits/symbol)
+efficiency = [2 4 6 4 2];
+
+% User throughput (Mbps)
+dataRate = (rbAlloc .* RBbw .* efficiency)/1e6;
+
+disp('User Throughput (Mbps):')
+disp(dataRate')
+
+figure
+
+% -------- Graph 1 --------
+subplot(2,1,1)
+plot(userID,dataRate,'-^','LineWidth',2)
+title('User Throughput in OFDMA')
+xlabel('User Number')
+ylabel('Throughput (Mbps)')
+grid on
+
+% -------- Graph 2 --------
+subplot(2,1,2)
+plot(rbAlloc,dataRate,'-d','LineWidth',2)
+title('Throughput vs Resource Blocks')
+xlabel('Allocated RBs')
+ylabel('Throughput (Mbps)')
+grid on
