@@ -1,1 +1,17 @@
+clc; clear; close all;
 
+signalPower = 1;                  % Signal Power (W)
+noisePower = [0.1 0.05 0.01];     % Noise Power (W)
+userID = 1:3;
+
+snrValue = 10*log10(signalPower./noisePower);
+
+disp('User  Noise Power(W)  SNR(dB)')
+disp([userID' noisePower' snrValue'])
+
+figure;
+bar(userID,snrValue);
+xlabel('User Number');
+ylabel('SNR (dB)');
+title('FDMA User SNR');
+grid on;
