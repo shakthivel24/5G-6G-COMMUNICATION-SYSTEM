@@ -1,1 +1,41 @@
+clc; clear; close all;
 
+% System parameters
+BW = 10e6;                 % 10 MHz
+RB = 180e3;                % 180 kHz per Resource Block
+
+% Total Resource Blocks
+numRB = floor(BW/RB);
+
+% Active users
+userID = 1:6;
+
+% Equal RB allocation
+share = floor(numRB/length(userID));
+rbAlloc = share*ones(1,length(userID));
+rbAlloc(1:mod(numRB,length(userID))) = rbAlloc(1:mod(numRB,length(userID))) + 1;
+
+rbUsage = (rbAlloc/numRB)*100;
+
+disp('Total Resource Blocks:')
+disp(numRB)
+disp('RBs Allocated to Users:')
+disp(rbAlloc)
+
+figure
+
+% -------- Graph 1 --------
+subplot(2,1,1)
+stem(userID,rbAlloc,'filled','LineWidth',2)
+title('OFDMA RB Allocation')
+xlabel('User Number')
+ylabel('Allocated RBs')
+grid on
+
+% -------- Graph 2 --------
+subplot(2,1,2)
+plot(userID,rbUsage,'-s','LineWidth',2)
+title('Resource Block Usage')
+xlabel('User Number')
+ylabel('Usage (%)')
+grid on
