@@ -1,1 +1,26 @@
+clc; clear; close all;
 
+frameSlots = 8;
+usedSlots = 6;
+idleSlots = frameSlots - usedSlots;
+
+efficiency = (usedSlots/frameSlots)*100;
+
+disp('Frame Utilization (%)')
+disp(efficiency)
+
+figure
+
+% Graph 1: Line Plot
+subplot(2,1,1)
+plot([1 2],[usedSlots idleSlots],'-s','LineWidth',2)
+title('TDMA Frame Slot Usage')
+xlabel('Slot Category (1=Used, 2=Idle)')
+ylabel('Slots')
+grid on
+
+% Graph 2: Pie Chart
+subplot(2,1,2)
+pie([usedSlots idleSlots])
+title('Frame Slot Distribution')
+legend('Used','Idle')
