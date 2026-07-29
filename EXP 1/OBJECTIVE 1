@@ -1,1 +1,30 @@
+clc; clear; close all;
 
+Fs = 1000;
+t = 0:1/Fs:1;
+
+TotalBW = 600;
+N = 3;
+BW = TotalBW/N;
+
+fc = [120 280 460];
+
+msg = sin(2*pi*10*t);
+
+ch1 = msg.*cos(2*pi*fc(1)*t);
+ch2 = msg.*cos(2*pi*fc(2)*t);
+ch3 = msg.*cos(2*pi*fc(3)*t);
+
+subplot(2,1,1);
+plot(t,ch1,'r',t,ch2,'g',t,ch3,'b');
+grid on;
+title('FDMA Channel Allocation');
+xlabel('Time (s)');
+ylabel('Amplitude');
+
+subplot(2,1,2);
+bar(1:N,BW*ones(1,N));
+grid on;
+xlabel('Users');
+ylabel('Bandwidth (kHz)');
+title('Bandwidth Allocation');
