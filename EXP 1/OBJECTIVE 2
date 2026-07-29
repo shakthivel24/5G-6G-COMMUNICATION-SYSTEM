@@ -1,1 +1,18 @@
+clc; clear; close all;
 
+channelBW = 200;      
+numUsers = 3;
+modOrder = 2;         
+
+bitRate = channelBW*log2(modOrder);
+userRate = bitRate*ones(1,numUsers);
+
+disp('User Data Rate (kbps)');
+disp([(1:numUsers)' userRate']);
+
+figure;
+bar(1:numUsers,userRate);
+xlabel('User Number');
+ylabel('Bit Rate (kbps)');
+title('FDMA User Data Rates');
+grid on;
