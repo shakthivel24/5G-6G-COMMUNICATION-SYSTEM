@@ -1,1 +1,33 @@
+clc; clear; close all;
 
+userID = 1:8;
+slotCount = 5;
+status = zeros(1,8);
+
+status(1:slotCount) = 1;
+blockedUsers = 1 - status;
+
+disp('User Slot Allocation')
+disp(table(userID',status','VariableNames',{'User','Allocation(1=Yes,0=No)'}))
+
+figure
+
+% Graph 1: User allocation
+subplot(2,1,1)
+stem(userID,status,'filled','LineWidth',2)
+title('TDMA User Allocation')
+xlabel('User Number')
+ylabel('Allocation Status')
+ylim([-0.2 1.2])
+grid on
+
+% Graph 2: Allocation overview
+subplot(2,1,2)
+plot(userID,status,'-s','LineWidth',2)
+hold on
+plot(userID,blockedUsers,'-^','LineWidth',2)
+title('TDMA Allocation Status')
+xlabel('User Number')
+ylabel('Status')
+legend('Allocated','Blocked')
+grid on
