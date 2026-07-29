@@ -1,1 +1,27 @@
+clc; clear; close all;
 
+% Carrier frequencies (MHz)
+freq = [850 3600 26000];
+
+% Fixed distance (km)
+dist = 2;
+
+% Free Space Path Loss
+pathLoss = 32.44 + 20*log10(freq) + 20*log10(dist);
+
+figure
+
+subplot(2,1,1)
+plot(freq,pathLoss,'-^','LineWidth',2)
+title('Path Loss vs Frequency')
+xlabel('Frequency (MHz)')
+ylabel('Path Loss (dB)')
+grid on
+
+
+subplot(2,1,2)
+plot(1:3,pathLoss,'-d','LineWidth',2)
+title('Path Loss Comparison Across Bands')
+xlabel('Band Index (1=Low, 2=Mid, 3=High)')
+ylabel('Path Loss (dB)')
+grid on
