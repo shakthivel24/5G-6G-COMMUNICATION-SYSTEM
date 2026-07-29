@@ -1,1 +1,30 @@
+clc; clear; close all;
 
+dist = 0.1:0.1:5;                 % Distance (km)
+freq = [850 3600 26000];          % Frequency (MHz)
+
+loss1 = 32.44 + 20*log10(freq(1)) + 20*log10(dist);
+loss2 = 32.44 + 20*log10(freq(2)) + 20*log10(dist);
+loss3 = 32.44 + 20*log10(freq(3)) + 20*log10(dist);
+
+figure
+
+% -------- Graph 1 --------
+subplot(2,1,1)
+plot(dist,loss1,'b','LineWidth',2); hold on
+plot(dist,loss2,'r','LineWidth',2)
+plot(dist,loss3,'m','LineWidth',2)
+title('Path Loss versus Distance')
+xlabel('Distance (km)')
+ylabel('Path Loss (dB)')
+grid on
+
+% -------- Graph 2 --------
+subplot(2,1,2)
+freqPlot = [850 3600 26000];
+lossPlot = [loss1(10) loss2(10) loss3(10)];
+plot(freqPlot,lossPlot,'-s','LineWidth',2)
+title('Path Loss versus Frequency')
+xlabel('Frequency (MHz)')
+ylabel('Path Loss (dB)')
+grid on
