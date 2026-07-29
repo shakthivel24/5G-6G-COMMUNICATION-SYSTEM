@@ -1,1 +1,25 @@
+clc; clear; close all;
 
+dist = 2;                         % Fixed distance (km)
+freq = [850 3600 26000];          % Frequency (MHz)
+
+pathLoss = 32.44 + 20*log10(freq) + 20*log10(dist);
+
+figure
+
+% -------- Graph 1 --------
+subplot(2,1,1)
+plot(freq,pathLoss,'-s','LineWidth',2)
+title('Path Loss vs Frequency')
+xlabel('Frequency (MHz)')
+ylabel('Path Loss (dB)')
+grid on
+
+% -------- Graph 2 --------
+subplot(2,1,2)
+bar(pathLoss)
+title('Path Loss Comparison')
+xlabel('Band Index (1=Low, 2=Mid, 3=High)')
+ylabel('Path Loss (dB)')
+xticklabels({'Low','Mid','High'})
+grid on
