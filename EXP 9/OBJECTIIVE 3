@@ -1,1 +1,42 @@
+clc;
+clear;
+close all;
 
+% Number of Antenna Elements
+antennas = [4 8 16 32 64];
+
+% Antenna Gain (dB)
+gain = 10*log10(antennas);
+
+% Create Bar Chart
+figure;
+b = bar(antennas, gain, 0.55);
+
+% Customize appearance
+b.FaceColor = [0.4 0.6 0.9];
+b.EdgeColor = 'black';
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('Number of Antenna Elements', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Antenna Gain (dB)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('Antenna Gain vs Antenna Array Size', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display gain values on bars
+for i = 1:length(gain)
+    text(antennas(i), gain(i)+0.2, ...
+         sprintf('%.1f dB', gain(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+% Axis limits
+xlim([0 70]);
+ylim([0 max(gain)+3]);
+
+legend('Antenna Gain', 'Location', 'northwest');
