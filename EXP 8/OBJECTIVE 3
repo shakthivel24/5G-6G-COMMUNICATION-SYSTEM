@@ -1,1 +1,42 @@
+clc;
+clear;
+close all;
 
+% Desired and Actual Steering Angles
+desired = [-60 -30 0 30 60];
+actual  = [-58 -32 1 29 62];
+
+% Beam Direction Error
+error = abs(desired - actual);
+
+% Plot Error Curve
+figure;
+plot(desired, error, '-^', ...
+     'LineWidth', 2, ...
+     'MarkerSize', 8, ...
+     'MarkerFaceColor', 'm');
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('Desired Steering Angle (Degrees)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Beam Direction Error (Degrees)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('Beam Direction Error vs Steering Angle', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display error values
+for i = 1:length(error)
+    text(desired(i), error(i)+0.15, ...
+         sprintf('%.0f°', error(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+xlim([-70 70]);
+ylim([0 3]);
+
+% Highlight data points
+legend('Beam Direction Error', 'Location', 'northwest');
