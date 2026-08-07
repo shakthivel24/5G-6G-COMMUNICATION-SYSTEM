@@ -1,1 +1,46 @@
+clc;
+clear;
+close all;
 
+% Network Slice Types
+slices = [1 2 3 4 5];
+
+% End-to-End Latency (ms)
+latency = [25 5 40 15 60];
+
+% Plot
+figure;
+plot(slices, latency, '-^', ...
+     'LineWidth', 2, ...
+     'MarkerSize', 8, ...
+     'MarkerFaceColor', 'r');
+
+grid on;
+box on;
+
+% Axis Labels
+xticks(slices);
+xticklabels({'eMBB','URLLC','mMTC','Private','IoT'});
+
+xlabel('Network Slice Type', ...
+       'FontSize', 12, ...
+       'FontWeight', 'bold');
+
+ylabel('End-to-End Latency (ms)', ...
+       'FontSize', 12, ...
+       'FontWeight', 'bold');
+
+title('End-to-End Latency in 5G Network Slicing', ...
+      'FontSize', 13, ...
+      'FontWeight', 'bold');
+
+% Display latency values
+for i = 1:length(latency)
+    text(slices(i), latency(i)+2, ...
+         sprintf('%d ms', latency(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+ylim([0 70]);
+legend('Latency', 'Location', 'northwest');
