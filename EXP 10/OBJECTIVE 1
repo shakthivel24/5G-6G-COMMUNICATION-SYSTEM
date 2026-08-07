@@ -1,1 +1,42 @@
+clc;
+clear;
+close all;
 
+% 5G Network Slice Types
+slices = {'eMBB','URLLC','mMTC','Private','IoT'};
+
+% Number of Configured Slices
+count = [1 1 1 1 1];
+
+% Bar Chart
+figure;
+b = bar(count, 0.6);
+
+% Customize bars
+b.FaceColor = [0.7 0.4 0.8];
+b.EdgeColor = 'black';
+
+grid on;
+box on;
+
+% Axis labels
+set(gca, 'XTick', 1:length(slices));
+set(gca, 'XTickLabel', slices);
+
+xlabel('Network Slice Type', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Number of Network Slices', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+
+title('Configured 5G Network Slices', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display values on top of bars
+for i = 1:length(count)
+    text(i, count(i)+0.03, num2str(count(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+ylim([0 1.4]);
+legend('Network Slices', 'Location', 'northwest');
