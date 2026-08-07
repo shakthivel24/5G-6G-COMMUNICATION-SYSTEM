@@ -1,1 +1,39 @@
+clc;
+clear;
+close all;
 
+% 5G Network Slice Types
+slices = categorical({'eMBB','URLLC','mMTC','Private','IoT'});
+
+% Slice Utilization (%)
+utilization = [85 70 60 75 50];
+
+% Bar Plot
+figure;
+b = bar(slices, utilization, 0.65);
+
+% Customize bars
+b.FaceColor = [0.2 0.7 0.6];
+b.EdgeColor = 'black';
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('Network Slice Type', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Slice Utilization (%)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('5G Network Slice Utilization', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display utilization values
+for i = 1:length(utilization)
+    text(i, utilization(i)+2, ...
+         sprintf('%d%%', utilization(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+ylim([0 100]);
+legend('Utilization', 'Location', 'northwest');
