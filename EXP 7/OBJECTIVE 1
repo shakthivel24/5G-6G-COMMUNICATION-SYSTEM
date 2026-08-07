@@ -1,1 +1,38 @@
+clc;
+clear;
+close all;
 
+% Antenna Array Sizes
+antennas = [2 4 8 16 32];
+
+% Beamforming Gain Calculation
+gain = 10*log10(antennas);
+
+% Bar Chart
+figure;
+b = bar(antennas, gain, 0.6);
+
+% Customize bars
+b.FaceColor = [0.3 0.7 0.4];
+b.EdgeColor = 'black';
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('Number of Antenna Elements', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Beamforming Gain (dB)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('Beamforming Gain vs Antenna Array Size', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display gain values on bars
+for i = 1:length(gain)
+    text(antennas(i), gain(i)+0.2, ...
+        sprintf('%.1f', gain(i)), ...
+        'HorizontalAlignment', 'center', ...
+        'FontWeight', 'bold');
+end
+
+ylim([0 max(gain)+3]);
