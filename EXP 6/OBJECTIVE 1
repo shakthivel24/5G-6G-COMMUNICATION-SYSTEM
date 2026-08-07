@@ -1,1 +1,33 @@
+clc;
+clear;
+close all;
 
+% 5G NR Numerology and Subcarrier Spacing
+mu = 0:4;                         
+scs = [15 30 60 120 240];        
+
+% Create bar graph
+figure;
+b = bar(mu, scs, 0.6);
+
+% Customize appearance
+b.FaceColor = [0.2 0.6 0.8];
+b.EdgeColor = 'black';
+
+grid on;
+box on;
+
+% Axis labels and title
+xlabel('Numerology Index (\mu)', 'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Subcarrier Spacing (kHz)', 'FontSize', 12, 'FontWeight', 'bold');
+title('5G NR Subcarrier Spacing vs Numerology', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display values on top of bars
+for i = 1:length(scs)
+    text(mu(i), scs(i)+5, num2str(scs(i)), ...
+        'HorizontalAlignment', 'center', ...
+        'FontWeight', 'bold');
+end
+
+ylim([0 260]);
