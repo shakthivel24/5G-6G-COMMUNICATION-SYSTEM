@@ -1,1 +1,45 @@
+clc;
+clear;
+close all;
 
+% SNR values (dB)
+snr = 0:5:30;
+
+% Convert SNR from dB to linear scale
+snr_linear = 10.^(snr/10);
+
+% Shannon Channel Capacity
+capacity = log2(1 + snr_linear);
+
+% Plot graph
+figure;
+plot(snr, capacity, '--d', ...
+     'LineWidth', 2, ...
+     'MarkerSize', 7, ...
+     'MarkerFaceColor', 'y');
+
+grid on;
+box on;
+
+xlabel('SNR (dB)', ...
+       'FontSize', 12, ...
+       'FontWeight', 'bold');
+
+ylabel('Channel Capacity (bps/Hz)', ...
+       'FontSize', 12, ...
+       'FontWeight', 'bold');
+
+title('Variation of Channel Capacity with SNR', ...
+      'FontSize', 13, ...
+      'FontWeight', 'bold');
+
+% Add capacity values near points
+for i = 1:length(capacity)
+    text(snr(i), capacity(i)+0.15, ...
+         sprintf('%.2f', capacity(i)), ...
+         'HorizontalAlignment', 'center');
+end
+
+legend('Capacity Curve', 'Location', 'northwest');
+xlim([0 30]);
+ylim([0 max(capacity)+1]);
