@@ -1,1 +1,35 @@
+clc;
+clear;
+close all;
 
+% 5G NR Parameters
+scs = [15 30 60 120 240];                % Subcarrier Spacing (kHz)
+slot = [1 0.5 0.25 0.125 0.0625];        % Slot Duration (ms)
+
+% Plot
+figure;
+plot(scs, slot, '-o', ...
+    'LineWidth', 2, ...
+    'MarkerSize', 8, ...
+    'MarkerFaceColor', 'b');
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('Subcarrier Spacing (kHz)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Slot Duration (ms)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('5G NR Slot Duration vs Subcarrier Spacing', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display values near points
+for i = 1:length(scs)
+    text(scs(i), slot(i)+0.03, num2str(slot(i)), ...
+        'HorizontalAlignment', 'center', ...
+        'FontWeight', 'bold');
+end
+
+xlim([0 260]);
+ylim([0 1.1]);
