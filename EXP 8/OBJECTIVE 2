@@ -1,1 +1,39 @@
+clc;
+clear;
+close all;
 
+% Steering Angles (degrees)
+angle = [-60 -30 0 30 60];
+
+% Array Gain (dB)
+gain = [9 12 15 12 9];
+
+% Bar Chart
+figure;
+b = bar(angle, gain, 0.6);
+
+% Customize bars
+b.FaceColor = [0.85 0.45 0.25];
+b.EdgeColor = 'black';
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('Steering Angle (Degrees)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Array Gain (dB)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('Array Gain vs Steering Angle', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display values above bars
+for i = 1:length(gain)
+    text(angle(i), gain(i)+0.3, ...
+         sprintf('%.0f dB', gain(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+xlim([-75 75]);
+ylim([0 18]);
