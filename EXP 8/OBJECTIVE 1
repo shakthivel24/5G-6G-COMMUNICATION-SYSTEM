@@ -1,1 +1,30 @@
+clc;
+clear;
+close all;
 
+% Steering Angles (degrees)
+angle = [-60 -30 0 30 60];
+
+% Normalized Gain
+gain = ones(size(angle));
+
+% Convert degrees to radians
+theta = deg2rad(angle);
+
+% Polar Plot
+figure;
+polarplot(theta, gain, '-d', ...
+          'LineWidth', 2, ...
+          'MarkerSize', 8, ...
+          'MarkerFaceColor', 'g');
+
+title('Steering Angle Variation in MIMO Beamforming', ...
+      'FontSize', 13, ...
+      'FontWeight', 'bold');
+
+% Enhance polar axes appearance
+ax = gca;
+ax.RLim = [0 1.2];
+ax.ThetaZeroLocation = 'top';
+ax.ThetaDir = 'clockwise';
+ax.FontWeight = 'bold';
