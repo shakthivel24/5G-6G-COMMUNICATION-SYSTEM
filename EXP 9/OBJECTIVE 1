@@ -1,1 +1,43 @@
+clc;
+clear;
+close all;
 
+% SNR values (dB)
+snr = 0:5:30;
+
+% Convert SNR to linear scale
+snr_linear = 10.^(snr/10);
+
+% Shannon Channel Capacity
+capacity = log2(1 + snr_linear);
+
+% Plot
+figure;
+plot(snr, capacity, '-s', ...
+     'LineWidth', 2, ...
+     'MarkerSize', 8, ...
+     'MarkerFaceColor', 'c');
+
+grid on;
+box on;
+
+% Labels and Title
+xlabel('SNR (dB)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+ylabel('Channel Capacity (bps/Hz)', ...
+       'FontSize', 12, 'FontWeight', 'bold');
+title('Channel Capacity vs SNR', ...
+      'FontSize', 13, 'FontWeight', 'bold');
+
+% Display capacity values
+for i = 1:length(capacity)
+    text(snr(i), capacity(i)+0.2, ...
+         sprintf('%.2f', capacity(i)), ...
+         'HorizontalAlignment', 'center', ...
+         'FontWeight', 'bold');
+end
+
+xlim([0 30]);
+ylim([0 max(capacity)+1]);
+
+legend('Shannon Capacity', 'Location', 'northwest');
