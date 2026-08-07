@@ -1,1 +1,29 @@
+clc;
+clear;
+close all;
 
+% Main Lobe Directions (degrees)
+theta = [-60 -30 0 30 60];
+
+% Normalized Gain
+gain = [1 1 1 1 1];
+
+% Convert to radians
+theta_rad = deg2rad(theta);
+
+% Polar Plot
+figure;
+polarplot(theta_rad, gain, '-o', ...
+          'LineWidth', 2, ...
+          'MarkerSize', 8, ...
+          'MarkerFaceColor', 'b');
+
+title('Analog Beamforming Main Lobe Directions', ...
+      'FontSize', 13, ...
+      'FontWeight', 'bold');
+
+% Improve appearance
+ax = gca;
+ax.RLim = [0 1.2];
+ax.ThetaZeroLocation = 'top';
+ax.ThetaDir = 'clockwise';
